@@ -1,0 +1,13 @@
+#telco 
+#DECISION TREE
+
+ntelco=select(telco,"churn","age","income","ed")
+ch= rpart(default~.,data=nbank)
+pr= predict(ch,ntelco,type = 'class')
+table(ntelco$churn,pr)
+rpart.plot(ch)
+#RANDOM FOREST
+
+rf= randomForest(as.factor(churn)~.,ntree=5000,data = ntelco)
+prf=predict(churn,ntelco,type="class")
+table(ntelco$churn,prf)
